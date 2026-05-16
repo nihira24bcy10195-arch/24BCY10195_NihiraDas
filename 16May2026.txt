@@ -1,0 +1,45 @@
+﻿Show databases;
+
+
+create database VITcampus;
+use VITcampus;
+create table CSE(
+sid int8,
+sname varchar(50),
+smarks int1
+);
+select * from CSE;
+insert into CSE values(101,'Nihira',89);
+insert into CSE values(102,'Tom',67);
+insert into CSE values(103,'Liam',90);
+insert into CSE values(104,'Harry',56);
+insert into CSE values(105,'Curian',95);
+show tables from VITcampus;
+
+
+create table EEE(
+sid int8,
+sname varchar(50),
+smarks int1
+);
+select * from EEE;
+insert into EEE values(101,'Nihira',90);
+insert into EEE values(102,'Tom',56);
+insert into EEE values(103,'Liam',78);
+insert into EEE values(104,'Harry',98);
+insert into EEE values(105,'Curian',95);
+show tables from VITcampus;
+
+
+create table MAT(
+sid int8,
+sname varchar(50),
+smarks int1
+);
+select * from MAT;
+insert into MAT values(101,'Nihira',97);
+insert into MAT values(102,'Tom',89);
+insert into MAT values(103,'Liam',86);
+insert into MAT values(104,'Harry',78);
+insert into MAT values(105,'Curian',90);
+show tables from VITcampus;
