@@ -1,0 +1,61 @@
+﻿use vitcampus;
+
+
+show tables from vitcampus;
+
+
+select * from worker;
+
+
+select first_name,department,salary from worker
+where department='admin' or salary >= 100000;
+
+
+select * from worker;
+
+
+select worker_id,first_name,department,salary from worker
+where worker_id not in (1,6,7);
+
+
+select * from worker 
+where salary not between 110000 and 300000;
+
+
+SELECT * FROM worker
+WHERE salary BETWEEN 100000 AND 500000
+AND department NOT IN ('hr','admin');
+
+
+SELECT * FROM worker WHERE first_name LIKE '_i__a_';
+SELECT * FROM Worker WHERE DEPARTMENT LIKE '%n';
+SELECT * FROM Worker WHERE FIRST_NAME LIKE '_i%';
+SELECT * FROM Worker WHERE DEPARTMENT LIKE 'A%';
+
+
+select distinct(department) from worker;
+
+
+SELECT worker_id, first_name,
+CASE
+    WHEN salary > 300000 THEN 'Rich people'
+    WHEN salary >= 100000 and salary <299999 THEN 'Middle'
+    ELSE 'Poor'
+END 
+AS Status
+FROM worker;
+
+
+select min(salary) from worker where department='admin';
+select max(salary) from worker where department='admin';
+
+
+create view minSalaryAdmin as select min(salary) from worker where department='admin';
+
+
+create view mAxSalaryAdmin as select max(salary) from worker where department='admin';
+
+
+
+
+select * from maxsalaryadmin;
