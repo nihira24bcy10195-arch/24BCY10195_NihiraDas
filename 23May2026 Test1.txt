@@ -1,0 +1,68 @@
+﻿1. SELECT E.name, J.job_title, D.dept_name
+FROM Employees E
+JOIN Jobs J ON E.job_id = J.job_id
+JOIN Departments D ON E.dept_id = D.dept_id;
+
+
+3.SELECT D.dept_name, SUM(E.salary) AS total_salary
+FROM Employees E JOIN Departments D ON E.dept_id = D.dept_id GROUP BY D.dept_name;
+
+
+4.SELECT D.dept_name, COUNT(E.emp_id) AS total_employees,
+AVG(E.salary) AS avg_salary
+FROM Employees E
+JOIN Departments D ON E.dept_id = D.dept_id
+GROUP BY D.dept_name HAVING COUNT(E.emp_id) > 2 AND AVG(E.salary) > 70000;
+
+
+5. SELECT E.name AS employee_name, M.name AS manager_name
+FROM Employees E LEFT JOIN Employees M
+ON E.manager_id = M.emp_id;
+
+
+6. SELECT name, salary FROM Employees ORDER BY salary DESC LIMIT 3;
+
+
+7. SELECT E,name, J.job_title, D.location FROM Employees E
+JOIN Jobs J ON E.job_id = J.job_id JOIN Departments D ON E.dept_id = D.dept_id WHERE J.job_title = 'Developer' AND D.location = 'San Francisco';
+
+
+8. SELECT YEAR(hire_date) AS hire_year, COUNT(emp_id) AS total_employees FROM Employees GROUP BY YEAR(hire_date);
+
+9. SELECT J.job_title, MAX(E.salary) AS max_salary FROM Employees E JOIN Jobs J ON E.job_id = J.job_id GROUP BY J.job_title HAVING MAX(E.salary) < 100000;
+
+10. SELECT name FROM Employees WHERE dept_id =( SELECT dept_id FROM Employees WHERE name = 'David');
+
+
+11. SELECT D.dept_name, E.name FROM Departments D
+LEFT JOIN Employees E ON D.dept_id = E.dept_id;
+
+
+12. SELECT name, salary, hire_date FROM Employees
+WHERE hire_date BETWEEN '2018-01-01' AND '2020-12-31'
+AND salary > 60000;
+
+
+14.SELECT E.name, J.job_title, E.salary FROM Employees E
+JOIN Jobs J ON E.job_id = J.job_id WHERE E.emp_id = 504;
+
+
+15. SELECT manager_id, MIN(salary) AS minimum_salary FROM Employees
+WHERE manager_id IS NOT NULL GROUP BY manager_id;
+
+
+17. SELECT MAX(salary) - MIN(salary) AS salary_difference FROM Employees;
+
+
+18. SELECT E.name, E.hire_date, D.dept_name, E.salary FROM Employees E JOIN Departments D ON E.dept_id = D.dept_id ORDER BY D.dept_name ASC, E.salary DESC;
+
+
+19. SELECT manager_id, COUNT(emp_id) AS total_employees FROM Employees WHERE manager_id IS NOT NULL GROUP BY manager_id HAVING COUNT(emp_id) > 2;
+
+
+21.SELECT J.job_title, COUNT(E.emp_id) AS total_employees FROM Jobs J LEFT JOIN Employees E ON J.job_id = E.job_id GROUP BY J.job_title;
+
+
+25. SELECT E.name
+FROM Employees E JOIN Employees M ON E.manager_id = M.emp_id
+WHERE M.name = 'Charlie';
