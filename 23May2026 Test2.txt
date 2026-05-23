@@ -1,0 +1,77 @@
+﻿1. SELECT E.employee_name, D.dept_name, D.location_id
+FROM Employees E JOIN Departments D ON E.dept_id = D.dept_id;
+
+
+2. SELECT P.project_name, P.client_name, SUM(A.hours_worked) AS total_hours FROM Projects P
+JOIN Assignments A ON P.project_id = A.project_id JOIN Departments D ON P.dept_id = D.dept_id
+WHERE D.dept_name = 'Consulting' GROUP BY P.project_name, P.client_name;
+
+
+3. SELECT E.employee_name, P.project_name
+FROM Employees E JOIN Assignments A
+ON E.employee_id = A.employee_id
+JOIN Projects P ON A.project_id = P.project_id
+WHERE P.client_name = 'GlobalTech Solutions';
+
+
+4. SELECT D.dept_name FROM Departments D
+LEFT JOIN Employees E ON D.dept_id = E.dept_id
+WHERE E.employee_id IS NULL;
+
+
+6. SELECT E.employee_name, AVG(A.hours_worked) AS average_hours
+FROM Employees E JOIN Assignments A ON E.employee_id = A.employee_id GROUP BY E.employee_name;
+
+
+
+
+
+
+7.SELECT D.dept_name, AVG(E.salary) AS avg_salary
+FROM Employees E JOIN Departments D
+ON E.dept_id = D.dept_id GROUP BY D.dept_name
+HAVING AVG(E.salary) > ( SELECT AVG(salary)
+FROM Employees);
+
+
+8. SELECT P.client_name, SUM(A.hours_worked) AS total_hours
+FROM Projects P JOIN Assignments A ON P.project_id = A.project_id
+GROUP BY P.client_name HAVING SUM(A.hours_worked) > 500;
+
+
+10. SELECT P.project_name, COUNT(DISTINCT A.employee_id) AS total_employees FROM Projects P JOIN Assignments A ON P.project_id = A.project_id GROUP BY P.project_name HAVING COUNT(DISTINCT A.employee_id) > 5;
+
+
+12. SELECT DISTINCT D.dept_name FROM Departments D
+JOIN Employees E ON D.dept_id = E.dept_id
+JOIN Assignments A ON E.employee_id = A.employee_id
+GROUP BY D.dept_name, E.employee_id HAVING COUNT(DISTINCT A.project_id) > 1;
+
+
+13. SELECT E.employee_name, P.project_name FROM Employees E
+JOIN Assignments A ON E.employee_id = A.employee_id
+JOIN Projects P ON A.project_id = P.project_id
+WHERE A.hours_worked < 10;
+
+
+
+
+14. SELECT P.project_name FROM Projects P
+LEFT JOIN Assignments A ON P.project_id = A.project_id
+WHERE A.assignment_id IS NULL;
+
+
+15. SELECT E1.employee_name, E1.salary
+FROM Employees E1 WHERE E1.salary >
+( SELECT MAX(E2.salary) FROM Employees E2
+WHERE E1.dept_id = E2.dept_id AND E1.employee_id <> E2.employee_id );
+
+
+17. SELECT project_name, start_date FROM Projects
+WHERE DATE_FORMAT(start_date, '%Y') = '2023';
+
+
+18. SELECT E.employee_name, IFNULL(M.employee_name, 'CEO') AS manager_name FROM Employees E LEFT JOIN Employees M ON E.manager_id = M.employee_id;
+
+
+21. SELECT E.employee_name AS employee_name, M.employee_name AS manager_name FROM Employees E LEFT JOIN Employees M ON E.manager_id = M.employee_id;
